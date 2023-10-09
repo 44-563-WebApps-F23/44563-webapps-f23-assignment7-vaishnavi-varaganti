@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Merger Page</title>
+	<style>
+		body {
+			background-color: beige;
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			text-align: center;
+		}
+
+		h1 {
+			text-align: center;
+			margin-top: 30px;
+			font-weight: bold;
+			color: darkred;
+			text-shadow: 1px 1px 1px black;
+		}
+
+		.flex-container {
+			display: flex;
+			flex-direction: row;
+			background-color: lightcoral;
+		}
+
+		.flex-container>div {
+			/*div children of the flex container*/
+			background-color: rgb(241, 198, 198);
+			margin: 10px;
+			padding: 20px;
+			font-size: 30px;
+		}
+
+		/* Responsive layout */
+		@media (max-width: 600px) {
+			.flex-container {
+				flex-direction: column;
+				background-color: green;
+			}
+		}
+
+		.button {
+			background-color: #4CAF50;
+			border: none;
+			color: black;
+			padding: 15px 32px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			border-radius: 8px;
+		}
+
+		p {
+			font-weight: bold;
+			margin: 10px;
+			font-size: 16px;
+			padding: 5px;
+		}
+
+		input[type=text] {
+			border: 2px solid black;
+			border-radius: 4px;
+			padding: 8px;
+		}
+
+		.label{
+			font-weight: bold;
+			margin: 10px;
+			font-size: 16px;
+			padding: 5px;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>Vaishnavi Varaganti builds a merger</h1>
+	<label class="label" for="inputElement">Input:</label>
+	<input type="text" class="form-control" name="inputElement" id="inputElement" value="">
+	<br>
+	<br>
+	<div class="flex-container" id="target">
+		<div class="merger">row item 1</div>
+		<div class="merger">row item 2</div>
+		<div class="merger">row item 3</div>
+	</div>
+	<p> Press the button to create an new element of type div and then add it to the container.
+	</p>
+	<button type="button" class="button" onclick="makeNewDiv()"><b>Add end</b></button>
+</body>
+<script>
+	function makeNewDiv() {
+		let element = document.createElement("div");
+		let value = document.getElementById("inputElement").value;
+		element.style.color = "black";
+		element.innerHTML = value;
+		element.className = "merger";
+
+		/* add it to the container */
+		let container = document.getElementById('target')
+		container.appendChild(element)
+
+	}
+</script>
+
+</html>
