@@ -40,8 +40,20 @@
             background-color: ivory;
         }
 
-        .lead{
+        .lead {
             font-weight: 500;
+        }
+
+        .button {
+            background-color: black;
+            border: solid white;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 20px;
+            border-radius: 8px;
         }
     </style>
 </head>
@@ -53,6 +65,10 @@
     <p id="penalty" class="lead" style="font-weight: 500;"><b>Penalty is zero.</b></p>
     <p class="lead" style="background-color:goldenrod" onclick="help()"><b>Click for help.</b></p>
     <p id="help" class="lead" style="background-color: forestgreen;" style="font-weight: 500;"><b>Help report.</b></p>
+    <br>
+    <button type="button" class="button" onclick="resetGame()"><b>New Game</b></button>
+    <br>
+    <br>
 
     <div class="container">
         <div class="image-row d-flex justify-content-center">
@@ -146,8 +162,8 @@
         var checkCount = 0;
         var penalty = 0;
         var lastCheck = 0;
-        var treasureLocation = 5;
-        var trapLocation = 18;
+        var treasureLocation = Math.floor(Math.random() * 25);
+        var trapLocation = Math.floor(Math.random() * 25);
         var gameOver = false;
         function check(position) {
             if (gameOver != true) {
@@ -203,6 +219,17 @@
             penalty = penalty + 2;
             document.getElementById("penalty").innerHTML = "Penalty is " + penalty + ".";
             document.getElementById("help").innerHTML = result;
+        }
+        function resetGame() {
+            treasureLocation = Math.floor(Math.random() * 25);
+            trapLocation = Math.floor(Math.random() * 25);
+            checkCount = 0
+            penalty = 0
+            document.getElementById("locations").innerHTML = "Number of locations checked is zero";
+            document.getElementById("penalty").innerHTML = "Penalty is zero";
+            for (let i = 0; i < 25; i++) {
+                document.getElementById(ids[i]).src = "treasure_location.jpg";
+            }
         }
     </script>
 </body>
