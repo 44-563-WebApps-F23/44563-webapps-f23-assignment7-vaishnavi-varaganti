@@ -65,7 +65,7 @@
 			padding: 8px;
 		}
 
-		.label{
+		.label {
 			font-weight: bold;
 			margin: 10px;
 			font-size: 16px;
@@ -85,9 +85,10 @@
 		<div class="merger">row item 2</div>
 		<div class="merger">row item 3</div>
 	</div>
-	<p> Press the button to create an new element of type div and then add it to the container.
-	</p>
+	<br>
 	<button type="button" class="button" onclick="makeNewDiv()"><b>Add end</b></button>
+	<button type="button" class="button" onclick="addFront()"><b>Add front</b></button>
+	<button type="button" class="button" onclick="remove()"><b>Remove</b></button>
 </body>
 <script>
 	function makeNewDiv() {
@@ -96,11 +97,27 @@
 		element.style.color = "black";
 		element.innerHTML = value;
 		element.className = "merger";
-
-		/* add it to the container */
-		let container = document.getElementById('target')
-		container.appendChild(element)
-
+		let container = document.getElementById('target');
+		container.appendChild(element);
+	}
+	function addFront() {
+		let element = document.createElement("div");
+		let value = document.getElementById("inputElement").value;
+		element.style.color = "black";
+		element.innerHTML = value;
+		element.className = "merger";
+		let container = document.getElementById("target");
+		container.insertBefore(element, container.firstChild);
+	}
+	function remove() {
+		let mergerItems = document.getElementsByClassName("merger");
+		if (mergerItems.length > 0) {
+			let length = mergerItems.length;
+			let index = Math.floor(length / 2);
+			if (index >= 0 && index < length) {
+				mergerItems[index].remove();
+			}
+		}
 	}
 </script>
 
