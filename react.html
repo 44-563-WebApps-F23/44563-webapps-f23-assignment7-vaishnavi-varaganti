@@ -2,27 +2,71 @@
 <html lang="en">
 
 <head>
-  <title>setTimeout use</title>
+  <title>React Timer</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <style>
+    body {
+      background-color: beige;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 30px;
+      font-weight: bold;
+      color: darkred;
+      text-shadow: 1px 1px 1px black;
+    }
+
+    div {
+      font-weight: bold;
+      margin: 10px;
+      font-size: 16px;
+      padding: 5px;
+      border: 1px solid black;
+      border-radius: 10px;
+      background-color: ivory;
+    }
+  </style>
 </head>
 
 <body>
 
   <h1>Vaishnavi Varaganti speed check</h1>
+  <br>
   <div id="target">Your time</div>
   <div id="counter">Count</div>
-  <button type="button" class="btn btn-primary" onclick="startTime()">Start Timer</button>
-  <button type="button" class="btn btn-primary" onclick="recordTime()">React</button>
+  <button type="button" class="btn btn-success" onclick="startTime()" style="color: black;"><b>Start Timer</b></button>
+  <button type="button" class="btn btn-warning" onclick="recordTime()"><b>React</b></button>
   <script>
-    let reactTime=undefined;
-    function recordTime(){
-      reactTime=Date.now();
+    let reactTime = undefined;
+    function recordTime() {
+      reactTime = Date.now();
       console.log(reactTime);
+    }
+    function startTime() {
+      for (let i = 0; i < 9; i++) {
+        setTimeout(() => {
+          document.getElementById("counter").innerHTML = i;
+        }, (8 - i) * 1000)
+      }
+      setTimeout(() => {
+        if (reactTime == undefined) {
+          document.getElementById("target").innerHTML = "Too Slow";
+        }
+        else {
+          let endTime = Date.now();
+          let elapsedTime = endTime - reactTime;
+          document.getElementById("target").innerHTML = "Time was " + elapsedTime;
+        }
+      }, 8000)
     }
   </script>
 
